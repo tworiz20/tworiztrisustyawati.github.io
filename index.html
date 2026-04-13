@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Portofolio | Two Riz Tri Sustyawati</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        :root {
+            --sage-dark: #7D8E6A;
+            --sage-green: #9CAF88;
+            --sage-medium: #B8C5AC;
+            --sage-light: #E8EDE4;
+            --white: #ffffff;
+            --text-dark: #2C3327;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--sage-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--sage-green);
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-weight: 700;
+            color: var(--white);
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li { margin-left: 30px; }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover { color: var(--text-dark); }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10%;
+            background: linear-gradient(135deg, var(--white) 50%, var(--sage-medium) 100%);
+            margin-top: 60px;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .profile-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 8px solid var(--sage-green);
+            object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .hero-content { max-width: 600px; }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            color: var(--sage-dark);
+            margin-bottom: 10px;
+        }
+
+        .btn-group { display: flex; gap: 15px; margin-top: 20px; }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary { background: var(--sage-green); color: white; }
+        .btn-primary:hover { background: var(--sage-dark); transform: scale(1.05); }
+
+        .btn-outline { border: 2px solid var(--sage-green); color: var(--sage-green); }
+        .btn-outline:hover { background: var(--sage-green); color: white; }
+
+        /* General Section */
+        section { padding: 80px 10%; }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--sage-dark);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: ''; width: 80px; height: 4px; background: var(--sage-green);
+            position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+        }
+
+        .card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border-left: 6px solid var(--sage-green);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .card h4 { color: var(--sage-dark); margin-bottom: 5px; font-size: 1.2rem; }
+        .date { font-size: 0.85rem; font-weight: 600; color: var(--sage-green); display: block; margin-bottom: 10px; }
+
+        /* Skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background: var(--sage-green);
+            color: var(--white);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Portfolio Gallery */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .portfolio-item {
+            height: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            background: var(--sage-medium);
+        }
+
+        .portfolio-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .portfolio-item:hover img { transform: scale(1.1); }
+
+        .portfolio-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(125, 142, 106, 0.9);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; opacity: 0; transition: 0.4s; padding: 20px; text-align: center;
+        }
+
+        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+
+        /* Footer & Contact */
+        footer {
+            background: var(--sage-dark);
+            color: white;
+            text-align: center;
+            padding: 60px 10%;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 30px;
+        }
+
+        .contact-item h5 { font-size: 1.1rem; margin-bottom: 5px; color: var(--sage-light); }
+        .contact-item p, .contact-item a { color: white; text-decoration: none; font-size: 0.9rem; }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: 1s all ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">TWO RIZ</div>
+        <ul>
+            <li><a href="#about">Profil</a></li>
+            <li><a href="#proyek">Proyek</a></li>
+            <li><a href="#organisasi">Organisasi</a></li>
+            <li><a href="#portfolio">Galeri</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <img src="foto-profil.jpg" alt="Two Riz Tri" class="profile-img animate__animated animate__zoomIn">
+            <div class="hero-content animate__animated animate__fadeInRight">
+                <span style="color: var(--sage-green); font-weight: 600; letter-spacing: 2px;">HELLO, I'M</span>
+                <h1>Two Riz Tri Sustyawati</h1>
+                <p>Mahasiswi Tingkat Akhir D4 Teknologi Rekayasa Konstruksi Bangunan Air di Institut Teknologi Sepuluh Nopember (ITS).</p>
+                <div class="btn-group">
+                    <a href="CV_TwoRiz.pdf" class="btn btn-primary" target="_blank">Download CV (PDF)</a>
+                    <a href="#contact" class="btn btn-outline">Hubungi Saya</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="reveal">
+        <h2 class="section-title">Profil</h2>
+        </div>
+
+        <h3 style="margin: 40px 0 25px; color: var(--sage-dark);">Pendidikan</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="card">
+                <span class="date">2022 - Sekarang</span>
+                <h4>Institut Teknologi Sepuluh Nopember</h4>
+                <p>D4 Teknologi Rekayasa Konstruksi Bangunan Air</p>
+            </div>
+            <div class="card">
+                <span class="date">2019 - 2022</span>
+                <h4>SMK Negeri 1 Udanawu</h4>
+                <p>Desain Pemodelan dan Informasi Bangunan</p>
+            </div>
+        </div>
+
+        <div class="container">
+        <h3 style="margin: 40px 0 25px; color: var(--sage-dark);">Keahlian & Karakter</h3>
+        <div class="card" style="background: var(--white);">
+            <p>Saya memiliki komitmen tinggi terhadap kualitas kerja dan ketepatan waktu. Teruji melalui penyelesaian tugas-tugas kompleks di bidang Teknik Sipil. Saya aktif mengembangkan kemampuan teknis serta manajemen waktu dalam lingkungan kerja yang dinamis.</p>
+            <div class="skills-container">
+                <span class="skill-tag">AutoCAD</span>
+                <span class="skill-tag">Sketchup & Layout</span>
+                <span class="skill-tag">Estimasi RAB</span>
+                <span class="skill-tag">Delf 3D</span>
+                <span class="skill-tag">Geostudio</span>
+		<span class="skill-tag">ArcMap</span>
+                <span class="skill-tag">Administrasi</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="proyek" class="reveal" style="background: var(--white);">
+        <h2 class="section-title">Pengalaman Proyek & Magang</h2>
+        <div class="card">
+            <span class="date">April 2021 - Oktober 2021</span>
+            <h4>CV. PILAR MAS (Kontraktor)</h4>
+            <h4>Magang Industri</h4>
+            <p style="margin-bottom: 10px;"><strong>Peran: Drafter, Estimator, dan Pengawas</strong></p>
+            <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>Membuat gambar kerja bangunan (2D AutoCAD) dan desain eksterior/interior (3D Sketchup).</li>
+                <li>Menghitung Rencana Anggaran Biaya (RAB).</li>
+                <li>Monitoring progres lapangan dan mengecek kesesuaian gambar dengan kondisi lapangan.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <span class="date">Juli 2025</span>
+            <h4>Pemprov Jatim-Project Dosen</h4>
+            <h4>Survey Investigasi Desain Wilayah Madura</h4>
+            <p style="margin-bottom: 10px;"><strong>Peran: Penyusun Laporan</strong></p>
+            <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>Menyusun laporan hasil perencanaan desain</li>
+            </ul>
+        </div>
+        <div class="card">
+            <span class="date">Juli 2025 - Desember 2025</span>
+            <h4>BBWS SERAYO OPAK – PU SDA</h4>
+            <h4>Magang pada Proyek Pembangunan Pengaman Pantai Congot, DIY </h4>
+            <p style="margin-bottom: 10px;"><strong>Peran:Observasi Lapangan, Managemen K3, Quality Control, dan Administrasi</strong></p>
+            <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>Melakukan inspeksi alat berat serta memonitoring penerapan K3 dan manajemen lalu lintas di area proyek.</li>
+                <li>Mengawasi progres harian (opname pekerjaan), memonitoring ketersediaan material, serta menguji mutu material di lapangan.</li>
+                <li>Mengelola dokumentasi administrasi proyek, pendataan produksi dan pemasangan material, pengarsipan dokumen, dan menyusun dokumen termin.</li>
+            </ul>
+    </section>
+
+
+    <section id="organisasi" class="reveal">
+        <h2 class="section-title">Organisasi & Prestasi</h2>
+        <div class="card">
+            <span class="date">2024</span>
+            <h4>Juara 1 Essay National Competition ICEF IPB</h4>
+            <p>Berhasil meraih peringkat pertama dalam kompetisi karya tulis ilmiah tingkat nasional yang diselenggarakan oleh IPB University.</p>
+        </div>
+        <div class="card">
+            <span class="date">2024 - 2025</span>
+            <h4>KEPALA DIVISI EXTERN HMDS – Relation</h4>
+            <p>Bertanggung jawab atas proker dan agenda dan koordinator staff.</p>
+        </div>
+        <div class="card">
+            <span class="date">2024 - 2025</span>
+            <h4>Staff Ahli BCC College D’village 13th - Kestari</h4>
+            <p>Menyiapkan berkas keperluan event terkait Bridge College Competition.</p>
+        </div>
+        <div class="card">
+            <span class="date">2023</span>
+            <h4>Staff Tender Cup D’village 12th - Kestari</h4>
+            <p>Menyiapkan berkas keperluan event terkait Tender Cup Competition.</p>
+        </div>
+    </section>
+
+    <section id="portfolio" class="reveal" style="background: var(--white);">
+        <h2 class="section-title">Galeri Portofolio</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+  		  <img src="magang-congot.jpeg" alt="Pantai Congot" onclick="openFull(this.src)" style="cursor: pointer;">
+ 		  <div class="portfolio-overlay" onclick="openFull(this.previousElementSibling.src)">
+		      <h4>Proyek Pembangunan Pengaman Pantai Congot, DIY</h4>
+		      <p>Proyek Pengaman Pantai Congot bertujuan melindungi Bandara YIA dan pesisir Kulon Progo dari abrasi mlalui pembangunan groin dengan material tetrapod untuk menjebak sedimen laut guna menstabilkan garis pantai sekaligus meningkatkan keamanan serta potensi wisata kawasan pesisir.</p>
+		      <p>--klik untuk memperbesar--</p>
+		  </div>
+		</div>
+            <div class="portfolio-item">
+  		  <img src="model-hunian.png" onclick="openFull(this.src)" style="cursor: pointer;">
+ 		  <div class="portfolio-overlay" onclick="openFull(this.previousElementSibling.src)">
+		      <h4>Katalog Rumah Hunian</h4>
+		      <p>Pemodelan 3D digunakan sebagai sarana promosi untuk menawarkan hunian yang telah didesain. Melalui katalog, klien disuguhkan visualisasi rumah fungsional dengan spesifikasi teknis.</p>
+		      <p>--klik untuk memperbesar--</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+  		  <img src="juara-lomba.png" onclick="openFull(this.src)" style="cursor: pointer;">
+ 		  <div class="portfolio-overlay" onclick="openFull(this.previousElementSibling.src)">
+		      <h4>Booklet Juara 1 Essay National</h4>
+		      <p>Ide inovatif ini bertujuan untuk mengatasi banjir sekaligus ketersediaan air bersih di Surabaya melalui sistem drainase berbasis rain water harvesting yang terintegrasi dengan teknologi IoT dan energi surya. Dengan metode filtrasi bertingkat dan pemantauan real-time via aplikasi mobile, sistem ini berhasil menciptakan siklus pengelolaan air berkelanjutan yang cerdas, efisien, dan otomatis untuk area perkotaan.</p>
+		      <p>--klik untuk memperbesar--</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <h2 style="color: white; margin-bottom: 10px;">Mari Terhubung</h2>
+            <p>Saya terbuka untuk diskusi mengenai manajemen konstruksi, teknik bangunan air, maupun peluang kolaborasi lainnya.</p>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h5>Email</h5>
+                    <p>tworiztri@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <h5>Telepon</h5>
+                    <p>+62 857-9627-5022</p>
+                </div>
+                <div class="contact-item">
+                    <h5>Sosial Media</h5>
+                    <a href="https://www.linkedin.com/in/two-riz-tri-sustyawati-43b505276" target="_blank">LinkedIn Profile</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px; font-size: 0.8rem; opacity: 0.7;">
+                &copy; 2026 Two Riz Tri Sustyawati. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+	 function openFull(src) {
+   	  document.getElementById("fullImage").src = src;
+    	  document.getElementById("imageModal").style.display = "flex";
+	 }
+    </script>
+
+	<div id="imageModal" onclick="this.style.display='none'" style="display:none; position:fixed; z-index:2000; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; cursor:pointer;">
+   	    <img id="fullImage" src="" style="max-width:90%; max-height:90%; border-radius:10px; border: 5px solid white;">
+	</div>
+</body>
+</html>

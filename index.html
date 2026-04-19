@@ -220,7 +220,6 @@
         .reveal { opacity: 0; transform: translateY(40px); transition: 1s all ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-	/* Sembunyikan tombol menu di komputer */
 	.menu-toggle {
   	  display: none;
   	  flex-direction: column;
@@ -230,51 +229,45 @@
 	.bar {
    	 width: 25px;
    	 height: 3px;
-   	 background-color: white; /* Sesuaikan warna teks nav */
+   	 background-color: white; 
    	 margin: 4px 0;
 	}
 
-	/* Pengaturan khusus untuk HP */
 	@media screen and (max-width: 768px) {
  	   .menu-toggle {
-     	   display: flex; /* Munculkan tombol di HP */
+     	   display: flex; 
    	 }
 
-   	 ul {
-   	     display: none; /* Sembunyikan menu daftar */
+  	  #nav-list {
+  	      display: none; 
    	     flex-direction: column;
-     	   width: 100%;
+   	     width: 200px;
     	    position: absolute;
     	    top: 60px;
-    	    left: 0;
-     	   background-color: #9CAF88; /* Warna hijau sage */
+    	    right: 20px;
+     	   left: auto;
+
+     	   background-color: #9CAF88; 
+	   border-radius: 10px;  
+           box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+           padding: 10px 0;
      	   text-align: center;
+      	  z-index: 1000; 
    	 }
 
-   	 /* Munculkan menu saat tombol diklik */
-   	 ul.active {
-    	    display: flex;
+    	#nav-list.active {
+   	     display: flex;
    	 }
 
-   	 li {
-   	     margin: 15px 0;
-  	  }
+   	 #nav-list li {
+    	    margin: 10px 0;
+   	 }
 	}
 
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">TWO RIZ</div>
-        <ul>
-            <li><a href="#about">Profil</a></li>
-            <li><a href="#proyek">Proyek</a></li>
-            <li><a href="#organisasi">Organisasi</a></li>
-            <li><a href="#portfolio">Galeri</a></li>
-            <li><a href="#contact">Kontak</a></li>
-        </ul>
-    </nav>
 	<nav>
  	   <div class="logo">TWO RIZ</div>
   	  <div class="menu-toggle" id="mobile-menu">

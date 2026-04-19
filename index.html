@@ -220,6 +220,47 @@
         .reveal { opacity: 0; transform: translateY(40px); transition: 1s all ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
+	/* Sembunyikan tombol menu di komputer */
+	.menu-toggle {
+  	  display: none;
+  	  flex-direction: column;
+  	  cursor: pointer;
+	}
+
+	.bar {
+   	 width: 25px;
+   	 height: 3px;
+   	 background-color: white; /* Sesuaikan warna teks nav */
+   	 margin: 4px 0;
+	}
+
+	/* Pengaturan khusus untuk HP */
+	@media screen and (max-width: 768px) {
+ 	   .menu-toggle {
+     	   display: flex; /* Munculkan tombol di HP */
+   	 }
+
+   	 ul {
+   	     display: none; /* Sembunyikan menu daftar */
+   	     flex-direction: column;
+     	   width: 100%;
+    	    position: absolute;
+    	    top: 60px;
+    	    left: 0;
+     	   background-color: #9CAF88; /* Warna hijau sage */
+     	   text-align: center;
+   	 }
+
+   	 /* Munculkan menu saat tombol diklik */
+   	 ul.active {
+    	    display: flex;
+   	 }
+
+   	 li {
+   	     margin: 15px 0;
+  	  }
+	}
+
     </style>
 </head>
 <body>
@@ -234,6 +275,21 @@
             <li><a href="#contact">Kontak</a></li>
         </ul>
     </nav>
+	<nav>
+ 	   <div class="logo">TWO RIZ</div>
+  	  <div class="menu-toggle" id="mobile-menu">
+   	     <span class="bar"></span>
+    	    <span class="bar"></span>
+    	    <span class="bar"></span>
+   	 </div>
+   	 <ul id="nav-list">
+    	    <li><a href="#about">Profil</a></li>
+    	    <li><a href="#proyek">Proyek</a></li>
+    	    <li><a href="#organisasi">Organisasi</a></li>
+    	    <li><a href="#portfolio">Galeri</a></li>
+    	    <li><a href="#contact">Kontak</a></li>
+   	 </ul>
+	</nav>
 
     <section id="home" class="hero">
         <div class="hero-container">
@@ -422,5 +478,22 @@
 	<div id="imageModal" onclick="this.style.display='none'" style="display:none; position:fixed; z-index:2000; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; cursor:pointer;">
    	    <img id="fullImage" src="" style="max-width:90%; max-height:90%; border-radius:10px; border: 5px solid white;">
 	</div>
+
+	<script>
+ 	   const menu = document.getElementById('mobile-menu');
+ 	   const navList = document.getElementById('nav-list');
+
+ 	   // Fungsi untuk buka/tutup menu
+ 	   menu.addEventListener('click', () => {
+ 	       navList.classList.toggle('active');
+ 	   });
+
+  	  // Menutup menu otomatis saat salah satu link diklik
+  	  document.querySelectorAll('#nav-list a').forEach(link => {
+  	      link.addEventListener('click', () => {
+      	      navList.classList.remove('active');
+     	   });
+  	  });
+	</script>
 </body>
 </html>
